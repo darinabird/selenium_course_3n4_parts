@@ -6,7 +6,7 @@ from .locators import MainPageLocators
 class MainPage(BasePage):
     def go_to_login_page(self):
 
-        login_link = self.browser.find_element_by_css_selector(*MainPageLocators.login_link)
+        login_link = self.browser.find_element_by_css_selector('#login_link')
         login_link.click()
 
     # метод проверяющий наличие ссылки
