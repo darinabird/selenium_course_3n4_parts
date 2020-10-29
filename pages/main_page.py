@@ -7,9 +7,10 @@ from .login_page import LoginPage
 class MainPage(BasePage):
     def go_to_login_page(self):
 
-        link = self.browser.find_element(*MainPageLocators.login_link)
+        link = self.browser.find_element_by_css_selector("#login_link")
         link.click()
-        return LoginPage(browser=self.browser, url=self.browser.current_url)
+        alert = self.browser.switch_to.alert
+        alert.accept()
 
     # метод проверяющий наличие ссылки
 
