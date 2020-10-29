@@ -1,4 +1,5 @@
 from .base_page import BasePage
+from .locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
@@ -8,13 +9,17 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        # реализуйте проверку на корректный url адрес
-        assert True
+        # реализуйте проверку на корректный url адрес??
+        # Как именно определить правильность URL
+        assert self.is_element_present(
+            *LoginPageLocators.login_url) == 'href="/en-gb/accounts/login/"', "Not correct login link"
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
-        assert True
+        assert self.is_element_present(
+            *LoginPageLocators.login_form), "Element isn't present"
 
     def should_be_register_form(self):
         # реализуйте проверку, что есть форма регистрации на странице
-        assert True
+        assert self.is_element_present(
+            *LoginPageLocators.register_form), "Element isn't present"
