@@ -7,8 +7,8 @@ from .login_page import LoginPage
 class MainPage(BasePage):
     def go_to_login_page(self):
 
-        login_link = self.browser.find_element_by_css_selector('#login_link')
-        login_link.click()
+        link = self.browser.find_element(*MainPageLocators.login_link)
+        link.click()
         # return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     # метод проверяющий наличие ссылки
