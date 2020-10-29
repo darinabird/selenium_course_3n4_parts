@@ -9,7 +9,7 @@ class MainPage(BasePage):
 
         link = self.browser.find_element(*MainPageLocators.login_link)
         link.click()
-        # return LoginPage(browser=self.browser, url=self.browser.current_url)
+        return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     # метод проверяющий наличие ссылки
 
