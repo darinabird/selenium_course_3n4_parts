@@ -16,7 +16,7 @@ class LoginPage(BasePage):
         # реализуйте проверку на корректный url адрес??
         # Как именно определить правильность URL
         assert self.is_element_present(
-            *LoginPageLocators.login_url) == 'href="/en-gb/accounts/login/"', "Not correct login link"
+            *LoginPageLocators.login_url), "Not correct login link"
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
