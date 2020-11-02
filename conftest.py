@@ -21,7 +21,7 @@ def browser(request):
     
     # В опции вебдрайвера передаем параметр из командной строки
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    browser = webdriver.Chrome(options=options)
+    browser = webdriver.Chrome(executable_path='chromedriver.exe', options=options)
     
     browser.implicitly_wait(5)
     yield browser

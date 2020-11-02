@@ -30,5 +30,6 @@ class BasePage:
             alert_text = alert.text
             print(f"Your code: {alert_text}")
             alert.accept()
+            return alert_text
         except NoAlertPresentException:
             print("No second alert presented")

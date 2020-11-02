@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
@@ -5,21 +6,21 @@ from pages.locators import ProductPageLocators
 
 class ProductPage(BasePage):
     def check_basket(self):
-        self.add_item()
+        self.add_item(self.browser)
+        get_full_answer = self.solve_quiz_and_get_code()
+        prepared_answer = get_full_answer.split(' ')[11]
+        print('\nЭто твой ответ для степика:', prepared_answer)
+        print('\nдальше ассерты сама)))')
         self.naming_equality()
         self.check_price_equality()
-
-        link = self.browser.find_element(*ProductPageLocators.product_url)
-        link.click()
-        return ProductPage(browser=self.browser, url=self.browser.current_url)
 
     def add_item(self, browser):
         '''
         Описать метод добавления в корзину.
         '''
-        b_button = browser.find_element(*ProductPageLocators.b_button)
+        prefind = browser.find_element(*ProductPageLocators.pre_find)
+        b_button = prefind.find_element(*ProductPageLocators.b_button)
         b_button.click()
-
 
     def naming_equality(self):
         '''
