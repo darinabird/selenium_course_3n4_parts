@@ -3,7 +3,7 @@ from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
 
 
-class ProductPage(BasePage):
+class ProductPage(BasePage, ProductPageLocators):
     def check_basket(self, browser):
         self.add_item(browser)
         self.naming_equality()
@@ -19,23 +19,17 @@ class ProductPage(BasePage):
         '''
         b_button = browser.find_element(*ProductPageLocators.b_button)
         b_button.click()
-
+        # активация скидки
+        self.solve_quiz_and_get_code()
 
     def naming_equality(self):
         '''
-        Сообщение о том, что товар добавлен в корзину.
         Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
-
-        --сейчас стоит, та проверка, которую смогла написать--
         '''
-        assert self.is_element_present(
-            *ProductPageLocators.item_name), 'Element isn\'t here'
+        assert self.item_name == self.item_bname, 'Naming is the same'
 
     def check_price_equality(self):
         '''
         Сообщение со стоимостью корзины. Стоимость корзины совпадает с ценой товара. 
-
-        --сейчас стоит, та проверка, которую смогла написать--
         '''
-        assert self.is_element_present(
-            *ProductPageLocators.item_price), 'Element isn\'t here'
+        assert self.item_price == self.total_price, 'Price is the same'

@@ -10,9 +10,12 @@ class LoginPageLocators():
     login_form = (By.CSS_SELECTOR, "#login_form")
     register_form = (By.CSS_SELECTOR, "#register_form")
 
+
 class ProductPageLocators():
     product_url = 'http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear'
     b_button = (By.ID, '#add_to_basket_form')
-    item_name = (By.CSS_SELECTOR, '.alertinner strong')
+    item_name = (By.CSS_SELECTOR, '.row h1')
+    # нужно пройти в корзину, чтобы взять селектор
+    item_bname = (By.CSS_SELECTOR, '.col-sm-4 h3')
     item_price = (By.CSS_SELECTOR, 'p.price_color')
     total_price = (By.CLASS_NAME, '.basket-mini strong')
