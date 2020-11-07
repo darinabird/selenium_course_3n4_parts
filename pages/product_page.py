@@ -4,8 +4,8 @@ from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def check_basket(self):
-        self.add_item()
+    def check_basket(self, browser):
+        self.add_item(browser)
         self.naming_equality()
         self.check_price_equality()
 
