@@ -10,8 +10,3 @@ def test_guest_can_add_product_to_basket(browser):
     page.add_item()
     product_page = ProductPage(browser, browser.current_url)
     product_page.add_item()
-
-# вызвать методы из product_page.py
-# проверить цену книги с ценой корзины
-
-# название карточки сверить с названием корзины
