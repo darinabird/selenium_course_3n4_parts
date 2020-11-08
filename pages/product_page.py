@@ -1,37 +1,38 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
+import time
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
 
 
 class ProductPage(BasePage, ProductPageLocators):
-    # --- unnecessary part ---
-    
-    # def check_basket(self, browser):
-    #     self.add_item(browser)
-    #     self.naming_equality()
-    #     self.check_price_equality()
-
-    #     link = self.browser.find_element(*ProductPageLocators.product_url)
-    #     link.click()
-    #     return ProductPage(browser=self.browser, url=self.browser.current_url)
 
     def add_item(self):
         '''
-        Описать метод добавления в корзину.
+        Описать метод добавления в корзину.    
         '''
-        b_button = self.browser.find_element(*ProductPageLocators.b_button)
-        b_button.click()
+
+        try:
+            self.browser.implicitly_wait(5)
+            b_button = self.browser.find_element(*ProductPageLocators.b_button)
+            b_button.click()
+        except NoSuchElementException:
+            print("Basket element not found")
         # активация скидки
-        self.solve_quiz_and_get_code()
+
+        try:
+            self.solve_quiz_and_get_code()
+        except NoAlertPresentException:
+            print("No alert appeared")
 
     def naming_equality(self):
         '''
-        Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
+        Проверка совпадения названия добавленного товара и товара в корзине.
         '''
         assert self.item_name == self.item_bname, 'Naming is the same'
 
     def check_price_equality(self):
         '''
-        Сообщение со стоимостью корзины. Стоимость корзины совпадает с ценой товара. 
+        Проверка стоимости товара со стоимостью корзины. 
         '''
         assert self.item_price == self.total_price, 'Price is the same'
